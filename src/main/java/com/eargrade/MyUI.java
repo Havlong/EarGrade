@@ -38,7 +38,7 @@ public class MyUI extends UI {
         layout.addComponents(name, button);
         
         setContent(layout);
-    }
+     }
 
     @WebServlet(urlPatterns = "/*", name = "MyUIServlet", asyncSupported = true)
     @VaadinServletConfiguration(ui = MyUI.class, productionMode = false)
