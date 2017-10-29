@@ -1,7 +1,5 @@
 package com.eargrade;
 
-import javax.servlet.annotation.WebServlet;
-
 import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.VaadinServletConfiguration;
 import com.vaadin.server.FileResource;
@@ -10,8 +8,12 @@ import com.vaadin.server.VaadinService;
 import com.vaadin.server.VaadinServlet;
 import com.vaadin.ui.*;
 
+import javax.servlet.annotation.WebServlet;
 import java.io.File;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * This UI is the application entry point. A UI may either represent a browser window 
@@ -26,13 +28,10 @@ public class MyUI extends UI {
     @Override
     protected void init(VaadinRequest vaadinRequest) {
         VerticalLayout layout = new VerticalLayout();
-        HorizontalLayout info = new HorizontalLayout();
         String basepath = VaadinService.getCurrent().getBaseDirectory().getAbsolutePath();
         FileResource resource = new FileResource(new File(basepath + "/WEB-INF/classes/original.png"));
-        Image logo = new Image("", resource);
+        Image logo = new Image("EarGrade - your way to the music", resource);
         logo.setWidth("200px");logo.setHeight("120px");
-        Label companyName = new Label("EarGrade - your way to the music");
-        info.addComponents(logo, companyName);
 
         HorizontalLayout authorize = new HorizontalLayout();
         VerticalLayout form = new VerticalLayout();
@@ -46,11 +45,13 @@ public class MyUI extends UI {
             yourId.setVisible(true);
             //TODO register new user
         });
+        log.addStyleName("login");
         form.addComponents(username, yourId);
         authorize.addComponents(form, log);
 
         HorizontalLayout melodying = new HorizontalLayout();
         Button download = new Button("Download song");
+        download.addStyleName("download");
         download.addClickListener(e->{
             //TODO set last melody on chosen and send melody
         });
@@ -72,7 +73,7 @@ public class MyUI extends UI {
         board.addColumn(Record::getUsername).setCaption("User");
         board.addColumn(Record::getScore).setCaption("Record");
 
-        layout.addComponents(info, authorize, melodying, board);
+        layout.addComponents(logo, authorize, melodying, board);
 
         setContent(layout);
      }
@@ -85,16 +86,16 @@ public class MyUI extends UI {
         String username;
         int score;
 
-        public Record(String username, int score){
+        Record(String username, int score){
             this.username = username;
             this.score = score;
         }
 
-        public int getScore() {
+        int getScore() {
             return score;
         }
 
-        public String getUsername() {
+        String getUsername() {
             return username;
         }
     }
