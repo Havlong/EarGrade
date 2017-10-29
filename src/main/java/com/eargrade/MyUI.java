@@ -1,17 +1,21 @@
 package com.eargrade;
 
-import javax.servlet.annotation.WebServlet;
-
+import com.vaadin.addon.jpacontainer.JPAContainer;
 import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.VaadinServletConfiguration;
+import com.vaadin.data.util.BeanItem;
 import com.vaadin.server.FileResource;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.server.VaadinService;
 import com.vaadin.server.VaadinServlet;
 import com.vaadin.ui.*;
 
+import javax.servlet.annotation.WebServlet;
 import java.io.File;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * This UI is the application entry point. A UI may either represent a browser window 
@@ -22,6 +26,13 @@ import java.util.*;
  */
 @Theme("mytheme")
 public class MyUI extends UI {
+
+    /**
+     * Объявляем контейнеры, представляющеие бд
+     */
+    private JPAContainer<MelodyModel> melodies;
+    private JPAContainer<UsersModel> users;
+    private JPAContainer<RecordModel> records;
 
     @Override
     protected void init(VaadinRequest vaadinRequest) {
@@ -73,6 +84,17 @@ public class MyUI extends UI {
         board.addColumn(Record::getScore).setCaption("Record");
 
         layout.addComponents(info, authorize, melodying, board);
+
+        /**
+         * "Добавление итемов в сущность" - нужно поставтиь так как надо
+         */
+
+        Button niceBut = new Button("add");
+        niceBut.addClickListener(event -> {
+            final BeanItem<UsersModel> newUserItem = new BeanItem<UsersModel>(new UsersModel());
+        });
+
+
 
         setContent(layout);
      }

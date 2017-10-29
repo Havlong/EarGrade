@@ -66,6 +66,38 @@
 			<groupId>com.vaadin</groupId>
 			<artifactId>vaadin-themes</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>com.vaadin.addon</groupId>
+			<artifactId>jpacontainer</artifactId>
+			<version>4.0.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<version>6.0.4.Final</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.h2database/h2 -->
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<version>1.4.196</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.vaadin.addons</groupId>
+			<artifactId>vaadin-database-visualizer</artifactId>
+			<version>0.0.2</version>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate.javax.persistence</groupId>
+			<artifactId>hibernate-jpa-2.1-api</artifactId>
+			<version>1.0.0.Final</version>
+		</dependency>
+		<dependency>
+			<groupId>com.vaadin.addon</groupId>
+			<artifactId>beanvalidation-addon</artifactId>
+			<version>1.0.0</version>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -149,6 +181,20 @@
 					<snapshots>
 						<enabled>true</enabled>
 					</snapshots>
+				</repository>
+				<repository>
+					<id>vaadin-snapshots</id>
+					<url>https://oss.sonatype.org/content/repositories/vaadin-snapshots/</url>
+					<releases>
+						<enabled>false</enabled>
+					</releases>
+					<snapshots>
+						<enabled>true</enabled>
+					</snapshots>
+				</repository>
+				<repository>
+					<id>vaadin-addons</id>
+					<url>http://maven.vaadin.com/vaadin-addons</url>
 				</repository>
 			</repositories>
 			<pluginRepositories>
